@@ -1,0 +1,73 @@
+# Base class: Publisher
+class Publisher:
+    def __init__(self, publisher_name):
+        self.publisher_name = publisher_name
+
+
+# Book class inheriting from Publisher
+class Book(Publisher):
+    def __init__(self, publisher_name, book_title, author):
+        super().__init__(publisher_name)
+        self.book_title = book_title
+        self.author = author
+
+
+# Literature class inheriting from Book
+class Literature(Book):
+    def __init__(self, publisher_name, book_title, author, genre):
+        super().__init__(publisher_name, book_title, author)
+        self.genre = genre
+
+    def display(self):
+        print("Category: Literature")
+        print(f"Title     : {self.book_title}")
+        print(f"Author    : {self.author}")
+        print(f"Genre     : {self.genre}")
+        print(f"Publisher : {self.publisher_name}")
+        print("-" * 40)
+
+
+# Fiction class inheriting from Book
+class Fiction(Book):
+    def __init__(self, publisher_name, book_title, author, theme):
+        super().__init__(publisher_name, book_title, author)
+        self.theme = theme
+
+    def display(self):
+        print("Category: Fiction")
+        print(f"Title     : {self.book_title}")
+        print(f"Author    : {self.author}")
+        print(f"Theme     : {self.theme}")
+        print(f"Publisher : {self.publisher_name}")
+        print("-" * 40)
+
+
+# Read number of books
+n = int(input("Enter number of books: "))
+books = []
+
+# Input details for each book
+for i in range(n):
+    print(f"\nEnter details for Book {i+1}")
+    category = input("Enter category (Literature/Fiction): ").strip().lower()
+    title = input("Book Title: ")
+    author = input("Author: ")
+    publisher = input("Publisher: ")
+
+    if category == "literature":
+        genre = input("Genre: ")
+        book = Literature(publisher, title, author, genre)
+    elif category == "fiction":
+        theme = input("Theme: ")
+        book = Fiction(publisher, title, author, theme)
+    else:
+        print("Invalid category! Skipping this entry.")
+        continue
+
+    books.append(book)
+
+# Display book details
+print("\n--- Book Details ---")
+for book in books:
+    book.display()
+
