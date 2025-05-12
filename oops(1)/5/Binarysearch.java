@@ -10,7 +10,7 @@ class Binarysearch{
        while(first<=last){
          int mid=first+(last-first)/2;
          if(numbers[mid]==target){
-            System.out.println("element found at index:" +mid);
+            System.out.println("element found at index:" +(mid+1));
             return mid;
          }
          else if(numbers[mid]<target){
@@ -42,4 +42,3 @@ public static void main(String args[]){
      bs.binarysearch(numbers,target);
 }
 }
-
