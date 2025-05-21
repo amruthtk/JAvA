@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+class Employee {
+    int eNo, eSalary;
+    String eName;
+
+    // Constructor
+    Employee(int no, int salary, String name) {
+        eNo = no;
+        eSalary = salary;
+        eName = name;
+    }
+
+    // Display method
+    void display() {
+        System.out.println("Employee No: " + eNo);
+        System.out.println("Employee Name: " + eName);
+        System.out.println("Employee Salary: " + eSalary);
+    }
+}
+
+public class EmployeeRecord {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of employees: ");
+        int n = sc.nextInt();
+
+        Employee[] emp = new Employee[n];
+
+        // Read employee details
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nEnter details of Employee " + (i + 1));
+            System.out.print("Employee No: ");
+            int no = sc.nextInt();
+            System.out.print("Employee Name: ");
+            String name = sc.next();
+            System.out.print("Employee Salary: ");
+            int salary = sc.nextInt();
+
+            emp[i] = new Employee(no, salary, name);
+        }
+
+        // Display all employees
+        System.out.println("\nAll Employee Details:");
+        for (int i = 0; i < n; i++) {
+            emp[i].display();
+            System.out.println("----------------------");
+        }
+
+        // Search employee
+        System.out.print("Enter employee number to search: ");
+        int searchNo = sc.nextInt();
+        boolean found = false;
+
+        for (int i = 0; i < n; i++) {
+            if (emp[i].eNo == searchNo) {
+                System.out.println("\nEmployee Found:");
+                emp[i].display();
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Employee not found.");
+        }
+
+        sc.close();
+    }
+}
